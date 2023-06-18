@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { HabitTile } from "../components/HabitTile/HabitTile";
-import { useHabits } from "../context/HabitContext";
+import { initialHabitDetails, useHabits } from "../context/HabitContext";
 import { IoMdAddCircle } from "react-icons/io";
 import { HabitModal } from "../components/HabitModal/HabitModal";
 
 export const Home = () => {
   const navigate = useNavigate();
-  const { state, openHabitModal, setOpenHabitModal } = useHabits();
+  const { state, dispatch, openHabitModal, setOpenHabitModal } = useHabits();
   return (
     <div className="home">
       <h1 className="title">Home</h1>
@@ -16,7 +16,13 @@ export const Home = () => {
           <div className="action-icons add">
             <IoMdAddCircle
               title="Create Habit"
-              onClick={() => setOpenHabitModal((prev) => !prev)}
+              onClick={() => {
+                setOpenHabitModal((prev) => !prev);
+                dispatch({
+                  type: "ADD_HABIT_DETAILS",
+                  payload: initialHabitDetails,
+                });
+              }}
             />
           </div>
         </div>

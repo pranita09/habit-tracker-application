@@ -3,16 +3,18 @@ import { habits } from "../data/data";
 
 export const HabitContext = createContext();
 
+export const initialHabitDetails = {
+  id: "",
+  name: "",
+  repeat: "",
+  goal: "",
+  timeOfDay: "",
+  startDate: "",
+};
+
 const initialState = {
   habits: habits,
-  habitDetails: {
-    id: "",
-    name: "",
-    repeat: "",
-    goal: "",
-    timeOfDay: "",
-    startDate: "",
-  },
+  habitDetails: initialHabitDetails,
 };
 
 const reducerFunc = (state, { type, payload }) => {
@@ -50,6 +52,8 @@ const reducerFunc = (state, { type, payload }) => {
           habit.id === payload.id ? { ...payload } : habit
         ),
       };
+    case "RESET_HABIT_DETAILS":
+      return { ...state, habitDetails: payload };
     default:
       return state;
   }

@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 export const HabitModal = () => {
   const {
     setOpenHabitModal,
-    state: { habits, habitDetails },
+    state: { habitDetails },
     dispatch,
     editingHabitId,
     setEditingHabitId,
@@ -33,7 +33,7 @@ export const HabitModal = () => {
   return (
     <div className="habit-form">
       <div className="form-header">
-        <h2>New Habit</h2>
+        <h2>{editingHabitId ? "Edit" : "New"} Habit</h2>
         <hr />
       </div>
       <form onSubmit={addHabitHandler}>
@@ -108,10 +108,13 @@ export const HabitModal = () => {
         </div>
         <div className="action-btns">
           <div className="adjacent-field">
-            <button type="submit">Add</button>
+            <button type="submit">{editingHabitId ? "Save" : "Add"}</button>
             <button
               type="button"
-              onClick={() => setOpenHabitModal((prev) => !prev)}
+              onClick={() => {
+                setOpenHabitModal((prev) => !prev);
+                setEditingHabitId(null);
+              }}
             >
               Discard
             </button>
