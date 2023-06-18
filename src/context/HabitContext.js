@@ -22,11 +22,13 @@ const reducerFunc = (state, { type, payload }) => {
     case "MOVE_TO_ARCHIEVE":
       return {
         ...state,
-        habits: state.habits.map((habit) =>
-          habit.id === payload.id
-            ? { ...habit, archieved: !habit.archieved }
-            : habit
-        ),
+        habits: state.habits
+          .map((habit) =>
+            habit.id === payload.id
+              ? { ...habit, archieved: !habit.archieved }
+              : habit
+          )
+          .filter((habit) => habit.id !== payload.id),
       };
     case "MOVE_TO_TRASH":
       return {
