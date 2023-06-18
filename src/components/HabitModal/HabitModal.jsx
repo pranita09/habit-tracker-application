@@ -1,14 +1,14 @@
-import { useState } from "react";
 import { useHabits } from "../../context/HabitContext";
 import "./HabitModal.css";
 import { v4 as uuid } from "uuid";
 
 export const HabitModal = () => {
   const {
-    openHabitModal,
     setOpenHabitModal,
-    state: { habitDetails },
+    state: { habits, habitDetails },
     dispatch,
+    editingHabitId,
+    setEditingHabitId,
   } = useHabits();
 
   const habitFormInputHandler = (event) => {
@@ -18,7 +18,15 @@ export const HabitModal = () => {
 
   const addHabitHandler = (event) => {
     event.preventDefault();
-    dispatch({ type: "ADD_HABIT", payload: { ...habitDetails, id: uuid() } });
+    if (editingHabitId) {
+      dispatch({
+        type: "EDIT_HABIT",
+        payload: { ...habitDetails, id: editingHabitId },
+      });
+    } else {
+      dispatch({ type: "ADD_HABIT", payload: { ...habitDetails, id: uuid() } });
+    }
+    setEditingHabitId(null);
     setOpenHabitModal((prev) => !prev);
   };
 
@@ -101,7 +109,10 @@ export const HabitModal = () => {
         <div className="action-btns">
           <div className="adjacent-field">
             <button type="submit">Add</button>
-            <button onClick={() => setOpenHabitModal((prev) => !prev)}>
+            <button
+              type="button"
+              onClick={() => setOpenHabitModal((prev) => !prev)}
+            >
               Discard
             </button>
           </div>
