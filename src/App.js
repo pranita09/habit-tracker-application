@@ -1,9 +1,15 @@
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Archieve } from "./pages/Archieve";
 
 function App() {
   return (
     <div className="App">
-      <h1>Habit Tracker</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/archieves" element={<Archieve />} />
+      </Routes>
     </div>
   );
 }

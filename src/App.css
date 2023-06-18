@@ -1,5 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Poppins:wght@400;500&display=swap");
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.home {
+  padding: 2rem;
+}
+
+.home .title {
+  text-align: center;
+}
+
+.habit-tiles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
