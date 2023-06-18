@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { HabitTile } from "../components/HabitTile/HabitTile";
-import { habits } from "../data/data";
+import { useHabits } from "../context/HabitContext";
 
 export const Archieve = () => {
   const navigate = useNavigate();
-  const archieveHabits = habits.filter((habit) => habit.archieved);
+  const { state } = useHabits();
+  const archieveHabits = state.habits.filter((habit) => habit.archieved);
   return (
     <div className="home">
       <h1 className="title">Archieves</h1>

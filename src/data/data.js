@@ -54,7 +54,7 @@ export const habits = [
     archieved: false,
   },
   {
-    id: 66,
+    id: 77,
     name: "Study",
     repeat: "Weekly",
     goal: "2 times Weekly",
